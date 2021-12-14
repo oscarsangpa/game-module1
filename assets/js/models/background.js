@@ -3,17 +3,17 @@ class Background {
         this.ctx = ctx;
 
         this.y = 0;
-        this.vy = 4
+        this.vy = 4;
 
         this.width = this.ctx.canvas.width;
         this.height = this.ctx.canvas.height;
 
         this.img = new Image();
-        this.img.src = '/assets/images/bg-garden.jpg';
-        this.img.isReady = false
+        this.img.src = '/assets/images/background.png';
+        this.img.isReady = false;
 
         this.img.onload = () => {
-        this.img.isReady = true
+        this.img.isReady = true;
 
     }
 }

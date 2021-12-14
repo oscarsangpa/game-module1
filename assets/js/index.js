@@ -10,7 +10,7 @@ document.getElementById('start-button').onclick = () => {
 
 
 function startGame() {
-    game.start()
+    game.start();
    
   }
   window.addEventListener('keydown',(event) =>{

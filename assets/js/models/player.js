@@ -2,7 +2,7 @@ class Player {
     constructor(ctx) {
         this.ctx = ctx;
 
-        this.x = 250;
+        this.x = 200;
         this.y = 80;
 
         this.size = 50;
@@ -11,22 +11,56 @@ class Player {
 
         this.vx = 0;
 
+        this.width = 34
+        this.height = 47
+
 
         this.movements = {
             top: false,
             left: false,
             right: false
         }
+
+        this.img = new Image()
+        this.img.src = '/assets/images/PC Computer - Star Wars Galactic Battlegrounds - X-Wing.png'
+        this.img.isReady = false
+    
+        this.img.onload = () => {
+          this.img.isReady = true
+        }
+    
+
+        this.horizontalFrames = 6
+        this.verticalFrames = 6
+
+        this.xFrame = 0
+        this.yFrame = 0
+
+        this.tick = 0
     }
 
     draw() {
-        this.ctx.save()
+      this.ctx.drawImage(
+        this.img,
+        (this.img.width * this.xFrame) / this.horizontalFrames,
+        (this.img.height * this.yFrame) / this.verticalFrames,
+        this.img.width / this.horizontalFrames,
+        this.img.height / this.verticalFrames,
+        this.x,
+        this.y,
+        this.width,
+        this.height
+      )
+  
+      this.tick++
+    }
+        // this.ctx.save();
     
-        this.ctx.fillStyle = 'blue'
-        this.ctx.fillRect(this.x, this.y, this.size, this.size)
+        // this.ctx.fillStyle = '#FFF';
+        // this.ctx.fillRect(this.x, this.y, this.size, this.size);
     
-        this.ctx.restore()
-      }
+        // this.ctx.restore();
+      
 
     setUpListeners(event){
         const status = event.type === 'keydown';
@@ -57,11 +91,11 @@ class Player {
       this.vx = -this.speed;
     }
     this.x += this.vx;
-    if (this.x <= 50) {
-      this.x = 50
+    if (this.y <= 50) {
+      this.y = 50;
     }
     if (this.x >= 410) {
-        this.x = 410
+        this.x = 410;
       }
 }
 }

@@ -6,24 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/style.css">
 
-    <title>Iron-Fallen</title>
+    <title>Game-project</title>
 </head>
 <body>
-    
+    <div class="container">
+    <div>
+    <img src="assets/images/resistance.png" alt="logo-resistance" class="badge" />
+
+    <h4 class=title-logo>Resistace</h4>
+    </div>  
+    <div>
+    <img src="assets/images/empire.png" alt="logo-resistance" class="badge" />
+
+    <h4 class=title-logo>Empire</h4>
+    </div>
+    </div>
 
     <div>
     <canvas width="400" height="600" id="game"></canvas>
     </div>
 
-    <div class="game-intro">
-        <br />
+    <div class="intro">
+        <br/>
         <img src="/assets/images/arrows.png" alt="" class="arrows-img" />
         <p>Use the left and right arrow to control the player!</p>
-        <p>Use the top button for jump!</p>
+        <p>Use the top button for fire!</p>
         <button id="start-button">Start</button>
       </div>
     
     <script src="assets/js/constants.js"></script>
+    <script src="assets/js/models/asteroids.js"></script>
     <script src="assets/js/models/background.js"></script>
     <script src="assets/js/models/player.js"></script>
     <script src="assets/js/models/game.js"></script>
