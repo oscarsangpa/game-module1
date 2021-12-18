@@ -1,5 +1,5 @@
 class LaserShot {
-    constructor(ctx, x, y) {
+    constructor(ctx, x, y, isEnemy = false) {
         this.ctx = ctx;
 
         this.x = x
@@ -19,7 +19,7 @@ class LaserShot {
         this.img.onload = () => {
           this.img.isReady = true
         }
-
+        this.isEnemy = isEnemy
     }
 
     draw() {
@@ -33,7 +33,11 @@ class LaserShot {
 }
 
     move() {
-      this.y += this.vy;  
+      if(this.isEnemy) {
+        this.y -= this.vy;  
+      } else {
+        this.y += this.vy;  
+      }
     }
 
     collidesWith(enemy) {

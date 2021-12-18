@@ -32,45 +32,66 @@ class Game {
             new Enemies(ctx, 282, 420),
             new Enemies(ctx, 336, 420),
             new Enemies(ctx, 390, 420)
-        ]
+        ];
+
+        this.score = 0;
 
         this.intervalId = undefined;
-        
+        this.enemiesBulletsIntervalId = undefined;
     }
 
     start() {
         if (!this.intervalId) {
-        this.intervalId = setInterval(() => {
-        this.clear()
-    
-        this.move()
-    
-        this.draw()
-        this.checkCollisions()
-        }, 1000 / 60)
+            this.intervalId = setInterval(() => {
+                this.clear()
+                this.move()
+                this.draw()
+                this.checkCollisions()
+            }, 1000 / 60)
+        }
 
+        if (!this.enemiesBulletsIntervalId) {
+            this.enemiesBulletsIntervalId = setInterval(() => {
+                this.enemies[Math.floor(Math.random() * (this.enemies.length - 0))]?.addLaserShot();
+            }, Math.floor(Math.random() * (600 - 300) + 300))
+        }
     }
-}
 
     clear() {
         this.ctx.clearRect(0, 0, this.ctx.canvas.height, this.ctx.canvas.width);
       }
 
-      drawScore() {
+    drawScore() {
         this.ctx.fillText(`Score: ${this.score}`, 100, 100)
-      }
+    }
 
     draw() {
         this.background.draw();  
         this.player.draw();
         this.enemies.forEach(enemies => enemies.draw());
-        
     }
 
     move() {
         this.background.move();
         this.player.move();
-        // this.enemies.move();
+        this.enemies.forEach((enemy, index) => {
+            enemy.move();
+            if(index < this.enemies.length / 3) {
+                if(enemy.y > this.ctx.canvas.height / 2 + 120) {
+                    enemy.y -= 0.1;
+                }
+            }
+            if(index >= this.enemies.length / 3 && index < this.enemies.length * 2 / 3) {
+                if(enemy.y > this.ctx.canvas.height / 2 + 60) {
+                    enemy.y -= 0.1;
+                }
+            }
+            if(index >= this.enemies.length * 2 / 3) {
+                if(enemy.y > this.ctx.canvas.height / 2) {
+                    enemy.y -= 0.1;
+                }
+            }
+        })
     }
 
     setUpListeners(event) {
@@ -83,6 +104,8 @@ class Game {
                 if (laser.collidesWith(enemy)) {
                     this.enemies.splice(idx, 1)
                     this.player.laserShots.splice(laserIdx, 1)
+                    this.score++;
+                    console.log("Score: ", this.score);
                 }
             })
         });

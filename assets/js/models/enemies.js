@@ -1,7 +1,7 @@
 class Enemies {
     constructor(ctx, x, y) {
         this.ctx = ctx;
-        // this.enemies = [];
+        this.laserShots = [];
 
         this.x = x;
         this.y = y;
@@ -19,23 +19,22 @@ class Enemies {
     }
     
     draw() {
-        this.ctx.drawImage(
-            this.img,
-            this.x,
-            this.y,
-            this.width,
-            this.height
-          )
-        }
+      this.laserShots.forEach(shot => shot.draw())
+
+      this.ctx.drawImage(
+        this.img,
+        this.x,
+        this.y,
+        this.width,
+        this.height
+      )
+    }
 
     move(){
-      do {
-        this.y--;
-      } while (this.ctx.canvas.height !== 300);
-}
+      this.laserShots.forEach(shot => shot.move())
+    }
 
-  enemieShot() {
-    addLaserShot()
-
-}
+  addLaserShot(){
+    this.laserShots.push(new LaserShot(this.ctx, this.x + (this.width/2 - 12), this.y, true))
+  }
 }
