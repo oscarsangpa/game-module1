@@ -1,28 +1,34 @@
 class Player {
     constructor(ctx) {
         this.ctx = ctx;
+        this.width = 90;
+        this.height = 580;
 
-        this.x = 200;
-        this.y = 80;
+
+        this.x = this.ctx.canvas.width /2 - this.width/2;
+        this.y = this.ctx.canvas.height - this.height;
+
 
         this.size = 50;
 
-        this.speed = 3;
+        this.speed = 4;
 
-        this.vx = 0;
 
-        this.width = 34
-        this.height = 47
+        this.width = 60;
+        this.height = 60;
 
 
         this.movements = {
-            top: false,
+            //top: false,
             left: false,
-            right: false
+            right: false,
+            //down: false,  
         }
 
+        this.laserShots = [];
+
         this.img = new Image()
-        this.img.src = '/assets/images/PC Computer - Star Wars Galactic Battlegrounds - X-Wing.png'
+        this.img.src = './assets/images/X-Wing-sprite.png'
         this.img.isReady = false
     
         this.img.onload = () => {
@@ -30,7 +36,7 @@ class Player {
         }
     
 
-        this.horizontalFrames = 6
+        this.horizontalFrames = 5
         this.verticalFrames = 6
 
         this.xFrame = 0
@@ -40,6 +46,8 @@ class Player {
     }
 
     draw() {
+      this.laserShots.forEach(shot => shot.draw())
+
       this.ctx.drawImage(
         this.img,
         (this.img.width * this.xFrame) / this.horizontalFrames,
@@ -52,50 +60,70 @@ class Player {
         this.height
       )
   
-      this.tick++
+      this.tick++;
     }
-        // this.ctx.save();
-    
-        // this.ctx.fillStyle = '#FFF';
-        // this.ctx.fillRect(this.x, this.y, this.size, this.size);
-    
-        // this.ctx.restore();
-      
+     
 
     setUpListeners(event){
         const status = event.type === 'keydown';
 
         switch(event.keyCode) {
-        case TOP_KEY:
-        this.movements.top = status;
-        break;
+        /*case TOP_KEY:
+          this.movements.top = status;
+          break;*/
         case RIGHT_KEY:
-        this.movements.right = status;
-        break;
-         case LEFT_KEY:
-        this.movements.left = status;
-        break;
-         default:
-        break;
+          this.movements.right = status;
+          break;
+        case LEFT_KEY:
+          this.movements.left = status;
+          break;
+        /*case DOWN_KEY:
+          this.movements.down = status;
+          break;*/
+        case SPACE_BAR:
+          this.addLaserShot();
+          break;
+        default:
+          break;
     }
 }
 
     move(){
-    if(!this.movements.right && !this.movements.left && !this.movements.top) {
-        this.vx = 0;
+    if(!this.movements.right && !this.movements.left /*&& !this.movements.top && !this.movements.down*/) {
+      this.vx = 0;
+      this.vy = 0;
     }
+    /*if (this.movements.top){
+      this.vy = -this.speed;
+    }
+    if (this.movements.down) {
+      this.vy = this.speed;
+    }*/
     if (this.movements.right) {
       this.vx = this.speed;
     }
     if (this.movements.left) {
       this.vx = -this.speed;
     }
-    this.x += this.vx;
-    if (this.y <= 50) {
-      this.y = 50;
+      this.x += this.vx;
+      this.y += this.vy;
+
+
+    if (this.x <= 0) {
+      this.x = 0;
     }
-    if (this.x >= 410) {
-        this.x = 410;
-      }
+    if (this.x + this.width >= this.ctx.canvas.width) {
+      this.x = this.ctx.canvas.width - this.width;
+    }
+    if (this.y <= 0) {
+      this.y = 0;
+    }
+
+    this.laserShots.forEach(shot => shot.move())
+ }
+
+ addLaserShot(){
+    this.laserShots.push(new LaserShot(this.ctx, this.x + (this.width/2 - 12), this.y))
 }
 }
+

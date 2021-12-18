@@ -4,7 +4,7 @@ class Game {
 
         this.background = new Background(ctx);
         this.player = new Player(ctx);
-        this.asteroids = new Asteroids(ctx);
+        this.enemies = new Enemies(ctx);
 
         this.intervalId = undefined;
         
@@ -28,13 +28,14 @@ class Game {
     draw() {
         this.background.draw();  
         this.player.draw();
-        this.asteroids.draw();
+        this.enemies.draw();
+        
     }
 
     move() {
         this.background.move();
         this.player.move();
-        this.asteroids.move();
+        // this.enemies.move();
     }
 
     setUpListeners(event) {
