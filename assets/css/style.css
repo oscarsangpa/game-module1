@@ -56,3 +56,7 @@ canvas {
   h6 {
     color: white;
   }
+
+  .logo-score {
+    width: 20px;
+  }

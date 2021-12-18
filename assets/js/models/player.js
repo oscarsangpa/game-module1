@@ -11,11 +11,11 @@ class Player {
 
         this.size = 50;
 
-        this.speed = 4;
+        this.speed = 6;
 
 
-        this.width = 60;
-        this.height = 60;
+        this.width = 70;
+        this.height = 70;
 
 
         this.movements = {
@@ -36,13 +36,15 @@ class Player {
         }
     
 
-        this.horizontalFrames = 5
-        this.verticalFrames = 6
+        this.horizontalFrames = 5;
+        this.verticalFrames = 6;
 
-        this.xFrame = 0
-        this.yFrame = 0
+        this.xFrame = 0;
+        this.yFrame = 0;
 
-        this.tick = 0
+        this.tick = 0;
+
+        this.canShot = true;
     }
 
     draw() {
@@ -81,7 +83,7 @@ class Player {
           this.movements.down = status;
           break;*/
         case SPACE_BAR:
-          this.addLaserShot();
+          this.canShot && this.addLaserShot();
           break;
         default:
           break;
@@ -123,7 +125,14 @@ class Player {
  }
 
  addLaserShot(){
+    this.canShot = false;
+    setTimeout(() => {
+      this.canShot = true;
+    }, 500)
     this.laserShots.push(new LaserShot(this.ctx, this.x + (this.width/2 - 12), this.y))
-}
+ }
+
+  IsDead() {}
+
 }
 

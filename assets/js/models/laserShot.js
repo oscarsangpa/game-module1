@@ -5,7 +5,7 @@ class LaserShot {
         this.x = x
         this.y = y
 
-        this.vy = 3;
+        this.vy = 5;
 
         this.width = 25;
         this.height = 25;
@@ -34,6 +34,18 @@ class LaserShot {
 
     move() {
       this.y += this.vy;  
+    }
+
+    collidesWith(enemy) {
+      if(
+        this.y + this.height >= enemy.y &&
+        this.y <= enemy.y + enemy.height &&
+        this.x + this.width >= enemy.x &&
+        this.x <= enemy.x + enemy.width
+      ) {
+        return true;
+      }
+      return false;
     }
 
   }  

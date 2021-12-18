@@ -36,6 +36,7 @@ class Background {
         )
 
     }
+    // this.enemies.forEach(enemies => enemies.draw())
   }
 
     move() {
