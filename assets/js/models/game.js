@@ -33,6 +33,8 @@ class Game {
             new Enemies(ctx, 336, 420),
             new Enemies(ctx, 390, 420)
         ];
+        this.sound = new Audio('/assets/audio/Imperial-March(complete).mp3')
+        this.sound.volume = 0.5;
 
         this.score = 0;
 
@@ -42,6 +44,8 @@ class Game {
 
     start() {
         if (!this.intervalId) {
+            this.sound.play()
+            this.sound.currentTime = 0;
             this.intervalId = setInterval(() => {
                 this.clear()
                 this.move()
@@ -78,17 +82,17 @@ class Game {
             enemy.move();
             if(index < this.enemies.length / 3) {
                 if(enemy.y > this.ctx.canvas.height / 2 + 120) {
-                    enemy.y -= 0.1;
+                    enemy.y -= 0.2;
                 }
             }
             if(index >= this.enemies.length / 3 && index < this.enemies.length * 2 / 3) {
                 if(enemy.y > this.ctx.canvas.height / 2 + 60) {
-                    enemy.y -= 0.1;
+                    enemy.y -= 0.2;
                 }
             }
             if(index >= this.enemies.length * 2 / 3) {
                 if(enemy.y > this.ctx.canvas.height / 2) {
-                    enemy.y -= 0.1;
+                    enemy.y -= 0.2;
                 }
             }
         })

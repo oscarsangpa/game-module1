@@ -22,7 +22,7 @@ class Player {
             //top: false,
             left: false,
             right: false,
-            //down: false,  
+            //down: false,
         }
 
         this.laserShots = [];
@@ -30,11 +30,14 @@ class Player {
         this.img = new Image()
         this.img.src = './assets/images/X-Wing-sprite.png'
         this.img.isReady = false
-    
+
         this.img.onload = () => {
           this.img.isReady = true
         }
-    
+
+        this.laserSound = new Audio('/assets/audio/laser-shot.mp3');
+        // this.laserSound.volume = 0.5;
+
 
         this.horizontalFrames = 5;
         this.verticalFrames = 6;
@@ -61,10 +64,10 @@ class Player {
         this.width,
         this.height
       )
-  
+
       this.tick++;
     }
-     
+
 
     setUpListeners(event){
         const status = event.type === 'keydown';
@@ -83,7 +86,9 @@ class Player {
           this.movements.down = status;
           break;*/
         case SPACE_BAR:
-          this.canShot && this.addLaserShot();
+          this.canShot && this.addLaserShot()
+          this.laserSound.play();
+          this.laserSound.currentTime = 0;
           break;
         default:
           break;
@@ -130,9 +135,20 @@ class Player {
       this.canShot = true;
     }, 500)
     this.laserShots.push(new LaserShot(this.ctx, this.x + (this.width/2 - 12), this.y))
+
  }
 
-  IsDead() {}
+  // IsDead(player) {
+  //   if(
+  //     this.y + this.height >= player.y &&
+  //     this.y <= player.y + player.height &&
+  //     this.x + this.width >= player.x &&
+  //     this.x <= player.x + player.width
+  //   ) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
 }
 

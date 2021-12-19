@@ -51,5 +51,16 @@ class LaserShot {
       }
       return false;
     }
+    playerCollides(player){
+      if(
+      this.y + this.height >= player.y &&
+      this.y <= player.y + player.height &&
+      this.x + this.width >= player.x &&
+      this.x <= player.x + player.width
+    ) {
+      return true;
+    }
+    return false;
+  }
 
   }  
