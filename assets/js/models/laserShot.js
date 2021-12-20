@@ -1,5 +1,5 @@
 class LaserShot {
-    constructor(ctx, x, y, isEnemy = false) {
+    constructor(ctx, x, y, isEnemy = false, isPlayer = true) {
         this.ctx = ctx;
 
         this.x = x
@@ -19,7 +19,8 @@ class LaserShot {
         this.img.onload = () => {
           this.img.isReady = true
         }
-        this.isEnemy = isEnemy
+        this.isEnemy = isEnemy;
+        this.isPlayer = isPlayer;
     }
 
     draw() {
@@ -40,27 +41,17 @@ class LaserShot {
       }
     }
 
-    collidesWith(enemy) {
+    collidesWith(spaceShip) {
       if(
-        this.y + this.height >= enemy.y &&
-        this.y <= enemy.y + enemy.height &&
-        this.x + this.width >= enemy.x &&
-        this.x <= enemy.x + enemy.width
+        this.y + this.height >= spaceShip.y &&
+        this.y <= spaceShip.y + spaceShip.height &&
+        this.x + this.width >= spaceShip.x &&
+        this.x <= spaceShip.x + spaceShip.width
       ) {
         return true;
       }
       return false;
     }
-    playerCollides(player){
-      if(
-      this.y + this.height >= player.y &&
-      this.y <= player.y + player.height &&
-      this.x + this.width >= player.x &&
-      this.x <= player.x + player.width
-    ) {
-      return true;
-    }
-    return false;
-  }
+
 
   }  

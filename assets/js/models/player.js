@@ -1,5 +1,5 @@
 class Player {
-    constructor(ctx) {
+    constructor(ctx, life) {
         this.ctx = ctx;
         this.width = 90;
         this.height = 580;
@@ -36,7 +36,7 @@ class Player {
         }
 
         this.laserSound = new Audio('/assets/audio/laser-shot.mp3');
-        // this.laserSound.volume = 0.5;
+        this.laserSound.volume = 0.5;
 
 
         this.horizontalFrames = 5;
@@ -48,6 +48,8 @@ class Player {
         this.tick = 0;
 
         this.canShot = true;
+
+        this.life = life;
     }
 
     draw() {
@@ -137,18 +139,6 @@ class Player {
     this.laserShots.push(new LaserShot(this.ctx, this.x + (this.width/2 - 12), this.y))
 
  }
-
-  // IsDead(player) {
-  //   if(
-  //     this.y + this.height >= player.y &&
-  //     this.y <= player.y + player.height &&
-  //     this.x + this.width >= player.x &&
-  //     this.x <= player.x + player.width
-  //   ) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
 
 }
 
