@@ -23,22 +23,27 @@ canvas {
 
   .title-logo {
     color: white;
-    font-size: 20px;
+    font-size: 30px;
   }
 
   .container {
       display: flex;
+      flex-direction:row;
       justify-content: space-around;
-      align-items: center;
-    }
-   
-    .btn-team {
-      display:flex;
-      justify-items: flex-start;
+      /* align-items: center; */
     }
 
+
+   
+    /* .btn-team {
+      display:flex;
+      justify-items: flex-start;
+    } */
+
   .intro h4 {
-    font-size: 15px;
+    display: flexbox;
+    justify-items: end;
+    font-size: 30px;
     color: white;
   }
 
@@ -58,5 +63,8 @@ canvas {
   }
 
   .logo-score {
-    width: 20px;
+    width: 25px;
+  }
+  
+  #score {
   }

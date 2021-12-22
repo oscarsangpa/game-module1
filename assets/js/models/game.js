@@ -41,9 +41,14 @@ class Game {
     // this.isPlayer = isPlayer;
 
     this.score = 0;
+    this.life = 6;
+    console.log(this.life);
 
     this.intervalId = undefined;
     this.enemiesBulletsIntervalId = undefined;
+
+    const score = document.getElementById('score');
+    
   }
 
   start() {
@@ -77,14 +82,16 @@ class Game {
 
   draw() {
     this.background.draw();
-
+    this.drawLife()
+    this.drawScore();
     this.player.draw();
     this.enemies.forEach((enemies) => enemies.draw());
-
-    if (this.player.life === 0) {
+    
+    if (this.life === 0) {
       if (!this.explosion) {
         this.explosion = new Explosion(this.ctx, this.player.x, this.player.y);
       }
+    
       this.explosion.draw();
     }
   }
@@ -140,6 +147,7 @@ class Game {
 
           this.score++;
           console.log("Score: ", this.score);
+          score.textContent = `SCORE: ${this.score}`;
         }
         if (this.enemies.length === 0) {
           this.gameOver(true);
@@ -150,17 +158,18 @@ class Game {
       enemy.laserShots.forEach((laser, laserIdx) => {
         if (laser.collidesWith(this.player)) {
           enemy.laserShots.splice(laserIdx, 1);
-          if (this.player.life > 0) {
-            this.player.life--;
+          if (this.life > 0) {
+            this.life--;
           }
 
-          console.log(this.player.life);
+          console.log(this.life);
         }
       });
     });
   }
 
   gameOver = (winCase = false) => {
+    this.sound.volume = 0;
     console.log("game over");
     clearInterval(this.intervalId);
     this.ctx.save();
@@ -170,10 +179,10 @@ class Game {
 
     this.ctx.fillStyle = "#FFE81F";
     this.ctx.textAlign = "center";
-    this.ctx.font = "bold 35px sans-serif";
+    this.ctx.font = "bold 25px sans-serif";
     if (!winCase) {
       this.ctx.fillText(
-        `Ooh... you lose!`,
+        `Ooh... You lose!`,
         this.ctx.canvas.width / 2,
         this.ctx.canvas.height / 2
       );
@@ -184,7 +193,7 @@ class Game {
       );
     } else {
       this.ctx.fillText(
-        `You Win! \n You score is ${this.score}`,
+        `You Win! The galaxy is safe!`,
         this.ctx.canvas.width / 2,
         this.ctx.canvas.height / 2
       );
@@ -197,4 +206,31 @@ class Game {
 
     this.ctx.restore();
   };
+
+  drawScore() {
+    this.ctx.save()
+
+    this.ctx.fillStyle = 'white'
+    this.ctx.font = ' bold 15px sans-serif'
+
+    this.ctx.fillText(`SCORE: ${this.score}`, 15, 20)
+
+    this.ctx.restore()
+  }
+
+  drawLife(){
+    if (this.life) {
+
+      this.ctx.save()
+
+    this.ctx.fillStyle = 'white'
+    this.ctx.font = ' bold 15px sans-serif'
+
+    this.ctx.fillText(`LIFE: ${this.life}`, 380, 20)
+
+    this.ctx.restore()
+
+    }
+  }
+
 }

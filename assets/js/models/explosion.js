@@ -4,8 +4,8 @@ class Explosion {
         this.ctx = ctx;
         this.x = x;
         this.y = y
-        this.width = 70;
-        this.height = 70;
+        this.width = 80;
+        this.height = 80;
 
         
         this.img = new Image()
@@ -26,7 +26,6 @@ class Explosion {
 
   draw() {
     if (this.img.isReady) {
-      console.log('muere');
       this.ctx.drawImage(
         this.img,
         (this.img.width * this.xFrame) / this.horizontalFrames,

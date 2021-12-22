@@ -49,7 +49,7 @@ class Player {
 
         this.canShot = true;
 
-        this.life = life;
+        // this.life = life;
     }
 
     draw() {
