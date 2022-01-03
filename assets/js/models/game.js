@@ -33,12 +33,10 @@ class Game {
       new Enemies(ctx, 336, 420),
       new Enemies(ctx, 390, 420),
     ];
-    this.sound = new Audio("/assets/audio/Imperial-March(complete).mp3");
+    this.sound = new Audio("./assets/audio/Imperial-March(complete).mp3");
     this.sound.volume = 0.5;
-    this.explosionSound = new Audio("/assets/audio/TIE-explode.mp3");
+    this.explosionSound = new Audio("./assets/audio/TIE-explode.mp3");
     this.explosionSound.volume = 0.5;
-
-    // this.isPlayer = isPlayer;
 
     this.score = 0;
     this.life = 6;
@@ -47,7 +45,6 @@ class Game {
     this.intervalId = undefined;
     this.enemiesBulletsIntervalId = undefined;
 
-    const score = document.getElementById('score');
     
   }
 
@@ -70,6 +67,7 @@ class Game {
         ]?.addLaserShot();
       }, Math.floor(Math.random() * (600 - 300) + 300));
     }
+    /* disparos aleatorios de los enemigos */
   }
 
   clear() {
@@ -118,6 +116,8 @@ class Game {
         if (index >= (this.enemies.length * 2) / 3) {
           if (enemy.y > this.ctx.canvas.height / 2) {
             enemy.y -= 0.5;
+            /*los enemigos se mueven hasta la mitad del canvas*/
+
           }
         }
       });
@@ -127,9 +127,6 @@ class Game {
       this.explosion.move(this.gameOver);
     }
 
-    // if (this.enemies.length === 12) {
-
-    // }
   }
 
   setUpListeners(event) {

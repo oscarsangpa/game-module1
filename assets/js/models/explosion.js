@@ -9,7 +9,7 @@ class Explosion {
 
         
         this.img = new Image()
-    this.img.src = '/assets/images/explosion-sprite.png'
+    this.img.src = './assets/images/explosion-sprite.png'
     this.img.isReady = false
     this.img.onload = () => {
       this.img.isReady = true
@@ -54,8 +54,9 @@ class Explosion {
         this.xFrame = 0
       }
       if (this.yFrame >= this.verticalFrames) {
-        onGameOver()  
+        onGameOver()
       }
+      /* cuando el jugador pierde todas las vidas itera sobre el sprite de la explosión */
     }
 }
 }

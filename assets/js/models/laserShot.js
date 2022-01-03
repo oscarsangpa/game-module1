@@ -20,7 +20,6 @@ class LaserShot {
           this.img.isReady = true
         }
         this.isEnemy = isEnemy;
-        this.isPlayer = isPlayer;
     }
 
     draw() {

@@ -48,8 +48,6 @@ class Player {
         this.tick = 0;
 
         this.canShot = true;
-
-        // this.life = life;
     }
 
     draw() {
