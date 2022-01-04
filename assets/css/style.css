@@ -1,70 +1,61 @@
 
   @import url('https://fonts.googleapis.com/css2?family=Bakbak+One&family=Poppins:wght@200&display=swap');
 
-body {
-    font-family: 'Bakbak One', cursive;
-    text-align: center;
-    background-image: url('../images/death-star-background.jpg');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-color: #464646;
+  body {
+      font-family: 'Bakbak One', cursive;
+      background-image: url('../images/death-star-background.jpg');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      background-color: #464646;
+      /* height: 100vh; */
 }
 
-canvas {
-    border: 1px dotted white;
-    border-radius: 5px;
-  }
-
-  .badge {
-    width: 80px;
-  }
-
-  .title-logo {
-    color: white;
-    font-size: 30px;
+  canvas {
+      border: 1px dotted white;
+      border-radius: 5px;
   }
 
   .container {
       display: flex;
-      flex-direction:row;
       justify-content: space-around;
-      /* align-items: center; */
+      align-items: center;
+    }
+
+  .item {
+      text-align: center; */
+      display: flex;
+      align-self: flex-end;
+      flex-direction: column;
+      
+      } 
+    
+  button {
+      font-family: 'Bakbak One', cursive;
+      font-size: 30px;
+      background-color: #F4D900;
+      color: rgba(255, 255, 255, 0.877);
+      padding: 10px 40px;
+      border: 0;
+      box-shadow: 0;
+      border-radius: 15px;
+      margin-bottom: 10px;
     }
 
 
-   
-    /* .btn-team {
-      display:flex;
-      justify-items: flex-start;
-    } */
-
-  .intro h4 {
-    display: flexbox;
-    justify-items: end;
+  div h4 {
     font-size: 30px;
     color: white;
+
   }
 
-  body button {
-    font-size: 30px;
-    background-color: #F4D900;
-    color: #fff;
-    padding: 10px 40px;
-    border: 0;
-    box-shadow: 0;
-    border-radius: 15px;
-    margin-bottom: 10px;
+  button:hover{
+    box-shadow: 10px 10px 0px #fff;
+    top: -5px;
+    left:-5px;
   }
 
-  h6 {
-    color: white;
-  }
-
-  .logo-score {
-    width: 25px;
-  }
-  
-  #score {
+  #start-button:hover {
+    color: #000;
   }

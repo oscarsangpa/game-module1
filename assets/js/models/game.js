@@ -39,8 +39,7 @@ class Game {
     this.explosionSound.volume = 0.5;
 
     this.score = 0;
-    this.life = 6;
-    console.log(this.life);
+    this.life = 3;
 
     this.intervalId = undefined;
     this.enemiesBulletsIntervalId = undefined;
@@ -116,6 +115,7 @@ class Game {
         if (index >= (this.enemies.length * 2) / 3) {
           if (enemy.y > this.ctx.canvas.height / 2) {
             enemy.y -= 0.5;
+
             /*los enemigos se mueven hasta la mitad del canvas*/
 
           }
@@ -157,9 +157,10 @@ class Game {
           enemy.laserShots.splice(laserIdx, 1);
           if (this.life > 0) {
             this.life--;
+
+            /* si el jugador es alcanzado por el laser del enemigo, se le resta una vida */
           }
 
-          console.log(this.life);
         }
       });
     });
@@ -184,18 +185,19 @@ class Game {
         this.ctx.canvas.height / 2
       );
       this.ctx.fillText(
-        `You score is ${this.score}`,
+        `Your score is: ${this.score}`,
         this.ctx.canvas.width / 2,
         this.ctx.canvas.height / 2 + 50
       );
     } else {
+      this.sound.volume = 0;
       this.ctx.fillText(
         `You Win! The galaxy is safe!`,
         this.ctx.canvas.width / 2,
         this.ctx.canvas.height / 2
       );
       this.ctx.fillText(
-        `You score is ${this.score}`,
+        `Your score is: ${this.score}`,
         this.ctx.canvas.width / 2,
         this.ctx.canvas.height / 2 + 50
       );
