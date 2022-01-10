@@ -35,7 +35,7 @@ class Player {
           this.img.isReady = true
         }
 
-        this.laserSound = new Audio('/assets/audio/laser-shot.mp3');
+        this.laserSound = new Audio('./assets/audio/laser-shot.mp3');
         this.laserSound.volume = 0.5;
 
 
